@@ -25,13 +25,6 @@ document
 
     if (!guessedNumber) {
       document.querySelector('.message').textContent = '⛔️ No Number';
-      document.querySelector('.score').textContent = --score;
-    } else if (guessedNumber > secretNumber) {
-      document.querySelector('.message').textContent = '📈 Too Hight';
-      document.querySelector('.score').textContent = --score;
-    } else if (guessedNumber < secretNumber) {
-      document.querySelector('.message').textContent = '📉 Too Low';
-      document.querySelector('.score').textContent = --score;
     } else if (guessedNumber == secretNumber) {
       document.querySelector('.message').textContent = '🎉 you won';
       document.querySelector('.score').textContent = --score;
@@ -44,6 +37,15 @@ document
       if (score > highScore) {
         highScore = score;
         document.querySelector('.highScore').textContent = score;
+      }
+    } else if (guessedNumber !== secretNumber) {
+      if (score > 1) {
+        guessedNumber > secretNumber
+          ? (document.querySelector('.message').textContent = '📈 Too Hight')
+          : (document.querySelector('.message').textContent = '📉 Too Low');
+        document.querySelector('.score').textContent = --score;
+      } else {
+        document.querySelector('.message').textContent = 'You lost :(';
       }
     }
   });
